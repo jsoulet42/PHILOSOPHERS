@@ -6,7 +6,7 @@
 /*   By: jsoulet <jsoulet@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:58:17 by jsoulet           #+#    #+#             */
-/*   Updated: 2023/08/09 10:16:34 by jsoulet          ###   ########.fr       */
+/*   Updated: 2023/08/09 13:00:11 by jsoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ void			philo_sleep(t_philo *philo);
 void			print_instr(t_philo *p, int status);
 void			print_fork(t_philo *p);
 int				philo_dead(t_philo *philo);
+int				verif_arg(int argc, char **argv);
 
 #endif

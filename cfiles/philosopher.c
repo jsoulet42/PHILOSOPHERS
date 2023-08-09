@@ -6,7 +6,7 @@
 /*   By: jsoulet <jsoulet@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:46:05 by jsoulet           #+#    #+#             */
-/*   Updated: 2023/08/09 10:25:37 by jsoulet          ###   ########.fr       */
+/*   Updated: 2023/08/09 13:01:46 by jsoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,21 @@ int	main(int argc, char **argv)
 	t_data	*data;
 
 	data = NULL;
+	if (verif_arg(argc, argv) == 0)
+		return (0);
+	data = data_init(argv, data);
+	philo = philo_init(data);
+	philo_start(philo);
+	free_all(philo, data);
+	return (0);
+}
+
+int	verif_arg(int argc, char **argv)
+{
 	if (argc < 5 || argc > 6)
 	{
 		printf("Error: wrong number of arguments\n");
-		return (1);
+		return (0);
 	}
 	else if (argv[1][0] == '1' && !argv[1][1])
 	{
@@ -30,11 +41,12 @@ int	main(int argc, char **argv)
 		printf("0 1 died\n");
 		return (0);
 	}
-	data = data_init(argv, data);
-	philo = philo_init(data);
-	philo_start(philo);
-	free_all(philo, data);
-	return (0);
+	if ((argv[1][0] == '0' && !argv[1][1]) || argv[1][0] == '-')
+	{
+		printf("error: wrong number of philo \n");
+		return (0);
+	}
+	return (1);
 }
 
 /*tout les thread commence ici on les crées et une foit qu'ils ont terminé
